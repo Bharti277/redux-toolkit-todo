@@ -15,6 +15,7 @@ function AddTodo() {
       <form onSubmit={addTodoHandler}>
         <input
           type="text"
+          placeholder="Type here"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
