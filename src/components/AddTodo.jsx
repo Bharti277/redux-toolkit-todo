@@ -5,7 +5,12 @@ import { addTodo } from "../redux/todoSlice";
 function AddTodo() {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
+
   const addTodoHandler = (e) => {
+    if (!input.trim()) {
+      alert("Text cannot be empty!");
+      return;
+    }
     e.preventDefault();
     dispatch(addTodo(input));
     setInput("");

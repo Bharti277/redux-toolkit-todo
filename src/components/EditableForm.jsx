@@ -7,34 +7,38 @@ const EditableForm = ({ todo }) => {
   const [newText, setNewText] = useState(todo.text);
   const dispatch = useDispatch();
 
-  const handleEdit = () => {
-    dispatch(editText(todo.id, newText));
+  const handleSave = () => {
+    dispatch(editText({ id: todo.id, newText }));
     setIsEditing(false);
   };
-  console.log(newText);
+
+  const onEditInput = () => {
+    setNewText(todo.text);
+    setIsEditing(false);
+  };
 
   return (
     <div>
-      <div key={todo.id}>
+      <div>
         {isEditing ? (
           <li
             className="flex items-center justify-between px-4 py-2 mt-4 rounded bg-zinc-800"
             key={todo.id}
           >
             <input
-              className="px-3 text-white"
+              className="px-3"
               type="text"
               value={newText}
               onChange={(e) => setNewText(e.target.value)}
             />
             <button
-              onClick={handleEdit}
+              onClick={handleSave}
               className="px-4 py-2 text-red-800 rounded-sm bg-slate-500"
             >
               Save
             </button>
             <button
-              onClick={() => setIsEditing(false)}
+              onClick={onEditInput}
               className="px-4 py-2 text-red-800 rounded-sm bg-slate-500"
             >
               Cancel
