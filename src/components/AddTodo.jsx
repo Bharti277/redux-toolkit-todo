@@ -7,11 +7,11 @@ function AddTodo() {
   const dispatch = useDispatch();
 
   const addTodoHandler = (e) => {
+    e.preventDefault();
     if (!input.trim()) {
       alert("Text cannot be empty!");
       return;
     }
-    e.preventDefault();
     dispatch(addTodo(input));
     setInput("");
   };
